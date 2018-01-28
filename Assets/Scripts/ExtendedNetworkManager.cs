@@ -38,6 +38,7 @@ public class ExtendedNetworkManager : NetworkManager
 
     public void ClientDisconnected(NetworkMessage netMsg)
     {
-
+        string NewConsoleText = GameObject.Find("GlobalController").GetComponent<GlobalController>().ConsoleString + "\n<color=red>  You have been disconnected from Host. </color>\n";
+        GameObject.Find("GlobalController").GetComponent<GlobalController>().Console.text = NewConsoleText;
     }
 }

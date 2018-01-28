@@ -116,6 +116,12 @@ public class MyGridController : MonoBehaviour
                     for (int CntY = 0; CntY < 8; CntY++)
                         transform.GetChild(CntY * 6 + CntX).GetComponent<GridElement>().SetState(MyGlobalController.PlayersShips[Cnt][CntY * 6 + CntX]);
     }
+    public void ClearMyShip()
+    {
+        for (int CntX = 0; CntX < 6; CntX++)
+            for (int CntY = 0; CntY < 8; CntY++)
+                transform.GetChild(CntY * 6 + CntX).GetComponent<GridElement>().SetState(GridElement.GridElementState.Empty);
+    }
     private bool Check(int Index, int XDim, int YDim)
     {
         int MyPosY = (int)Mathf.Floor(Index / 6);

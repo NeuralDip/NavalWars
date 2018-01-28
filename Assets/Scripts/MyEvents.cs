@@ -40,7 +40,8 @@ public class MyEvents : MonoBehaviour
     }
     public void ReconnectAfterGameover()
     {
-
+        MyGlobalController.SetState(GlobalController.GuiGlobalState.Welcome);
+        MyGlobalController.WelcomeMessage.text = "Please tell us your name.";
     }
     public void CloseAfterGameover()
     {

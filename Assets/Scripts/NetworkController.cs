@@ -30,28 +30,6 @@ public class NetworkController : NetworkBehaviour
         if (!isLocalPlayer) return;
         MyGlobalController.ThePlayerObject = gameObject;
     }
-    public void OnPlayerConnected(NetworkPlayer player)
-    {
-        if(MyGlobalController.PlayersNetworks==null) MyGlobalController.PlayersNetworks = new List<NetworkPlayer>();
-        MyGlobalController.PlayersNetworks.Add(player);
-    }
-    public void OnPlayerDisconnected(NetworkPlayer player)
-    {
-        int PlayerIndex = MyGlobalController.PlayersNetworks.IndexOf(player);
-        CmdAppendToConsole(MyGlobalController.PlayersNames[PlayerIndex]+ " has disconnected", Severities.Exception);
-        MyGlobalController.PlayersNames.RemoveAt(PlayerIndex);
-        MyGlobalController.PlayersShips.RemoveAt(PlayerIndex);
-        MemoryStream MSS = new MemoryStream();
-        MemoryStream MSN = new MemoryStream();
-        BinaryFormatter BF = new BinaryFormatter();
-        BF.Serialize(MSS, MyGlobalController.PlayersShips);
-        BF.Serialize(MSN, MyGlobalController.PlayersNames);
-        GetComponent<PlaceShips>().RpcSendShipsToClients(Convert.ToBase64String(MSS.GetBuffer()), Convert.ToBase64String(MSN.GetBuffer()));
-    }
-    public void OnDisconnectedFromServer(NetworkDisconnection info)
-    {
-        CmdAppendToConsole("You have been disconnected from the host...", Severities.Exception);
-    }
 
     void Update()
     {

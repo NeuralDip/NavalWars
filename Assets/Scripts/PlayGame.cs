@@ -44,9 +44,12 @@ public class PlayGame : NetworkBehaviour
             if (CheckLossCondition(MyGlobalController.PlayersShips[PlayerIndex]))
             {
                 RpcYouJustDied(ToPlayer);
+
+                MyGlobalController.PlayersNames.RemoveAt(PlayerIndex);
+                MyGlobalController.PlayersShips.RemoveAt(PlayerIndex);
+
                 MyNetworkController.CmdAppendToConsole(ToPlayer + " Just lost all the ships... Goodbye...", NetworkController.Severities.Exception);
             }
-
         }
         else
         {
@@ -79,6 +82,7 @@ public class PlayGame : NetworkBehaviour
     {
         if (MyGlobalController.MyPlayerName != WhoDied) return;
         MyGlobalController.SetState(GlobalController.GuiGlobalState.GameOver);
+        GameObject.Find("NetworkManager").GetComponent<ExtendedNetworkManager>().client.Disconnect();
     }
     private bool CheckLossCondition(GridElement.GridElementState[] Ships)
     {

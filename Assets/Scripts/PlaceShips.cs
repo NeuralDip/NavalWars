@@ -38,6 +38,7 @@ public class PlaceShips : NetworkBehaviour
         {
             case PlaceShipsStates.Place2x1:
                 MyGlobalController.MyShipsMessage.text = "Place your 2x1 ship.";
+                MyGlobalController.MyGridControllerScript.ClearMyShip();
                 break;
             case PlaceShipsStates.Place1X3:
                 MyGlobalController.MyShipsMessage.text = "Place your 1x3 ship.";
