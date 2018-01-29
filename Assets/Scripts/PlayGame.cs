@@ -23,7 +23,7 @@ public class PlayGame : NetworkBehaviour
     {
         int EnemyIndex = MyGlobalController.PlayersNames.IndexOf(ToPlayer);
         if (MyGlobalController.PlayersShips[EnemyIndex][Index] == GridElement.GridElementState.Invalid) return;
-        if (true)//HasLoadedMissile)
+        if (HasLoadedMissile)
         {
             HasLoadedMissile = false;
             MyGlobalController.ConsoleMessage.text = "<color=red>You Have No Missile Loaded. Type 'reload' to Load One Now.</color>";
